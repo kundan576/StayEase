@@ -101,9 +101,12 @@ app.use((req, res, next) => {
   next();
 });
 
-app.get("/", (req, res) => {
-  res.redirect("/listings");
+app.get("/", async (req, res) => {
+  const Listing = mongoose.model("Listing");
+  const allListing = await Listing.find({});
+  res.render("listings/index", { allListing });
 });
+
 
 app.use("/listings", listings);
 app.use("/listings/:id/review", reviewRoutes);
