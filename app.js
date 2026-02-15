@@ -101,15 +101,15 @@ app.use((req, res, next) => {
   next();
 });
 
-
+app.get("/", (req, res) => {
+  res.redirect("/listings");
+});
 
 app.use("/listings", listings);
 app.use("/listings/:id/review", reviewRoutes);
 app.use("/", userRoutes);
 
-app.get("/", (req, res) => {
-  res.redirect("/listings");
-});
+
 
 
 app.get("/listing/new", (req, res) => {
